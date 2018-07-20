@@ -12,9 +12,12 @@ declare(strict_types=1);
 namespace Multinexo\Afip\WSFE;
 
 use Multinexo\Afip\Exceptions\WsException;
+use Multinexo\Afip\Traits\Logging;
 
 class WsFuncionesInternas
 {
+    use Logging;
+
     /**
      * @var
      */
@@ -41,6 +44,8 @@ class WsFuncionesInternas
             'Auth' => $authRequest,
             'FeCAEReq' => $data,
         ]);
+
+        $this->logSoapEndpoint(__METHOD__, $client);
 
         $this->resultado->procesar($resultado);
 
@@ -80,6 +85,8 @@ class WsFuncionesInternas
             'CbteTipo' => $cbteTipo,
         ]);
 
+        $this->logSoapEndpoint(__METHOD__, $client);
+
         $this->resultado->procesar($resultado);
 
         return $resultado->FECompUltimoAutorizadoResult;
@@ -105,6 +112,8 @@ class WsFuncionesInternas
             'Periodo' => $data->periodo,
             'Orden' => $data->orden,
         ]);
+
+        $this->logSoapEndpoint(__METHOD__, $client);
 
         $this->resultado->procesar($resultado);
 
@@ -133,6 +142,8 @@ class WsFuncionesInternas
             'Periodo' => $data->periodo,
             'Orden' => $data->orden,
         ]);
+
+        $this->logSoapEndpoint(__METHOD__, $client);
 
         // TODO: Function ("FECAEASolicitar") is not a valid method for this service
         $this->resultado->procesar($resultado);
@@ -166,6 +177,8 @@ class WsFuncionesInternas
                 'PtoVta' => $data->puntoVenta,
             ],
         ]);
+
+        $this->logSoapEndpoint(__METHOD__, $client);
 
         // TODO: Function ("FECAEASolicitar") is not a valid method for this service
         $this->resultado->procesar($resultado);

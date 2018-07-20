@@ -44,6 +44,8 @@ $configuracion = [
     ],
 
     'cuit' => null,
+
+    'log' => false,
 ];
 
 return $configuracion;

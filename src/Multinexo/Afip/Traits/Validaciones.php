@@ -43,8 +43,8 @@ trait Validaciones
 
                 $wsReglas = [];
                 $codComprobantes = $this->codComprobantes();
-                $puntosVenta = $this->puntosVentaValidos();
-                Log::debug('pos: ' . json_encode($puntosVenta));
+//                $puntosVenta = $this->puntosVentaValidos();
+//                Log::debug('pos: ' . json_encode($puntosVenta));
 
                 $codDocumento = $this->codDocumento();
                 $codMonedas = $this->codMonedas();
@@ -53,7 +53,8 @@ trait Validaciones
                     'periodo' => v::notEmpty()->date('Ym'),
                     'orden' => v::notEmpty()->intVal()->between(1, 2)->length(1, 1),
                     'codigoComprobante' => v::in($codComprobantes),
-                    'puntoVenta' => v::in($puntosVenta), // fe s/item?
+//                    'puntoVenta' => v::in($puntosVenta), // fe s/item?
+                    'puntoVenta' => v::notEmpty(), // se quita validacion porque en homologacion no devuelve resultados
                     'cantidadRegistros' => v::notEmpty()->intVal()->between(1, 9999),
                     'codigoConcepto' => v::in(['1', '2', '3']),
                     'codigoDocumento' => v::in($codDocumento),

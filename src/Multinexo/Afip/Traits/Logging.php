@@ -21,7 +21,7 @@ trait Logging
     {
         if ($this->hasLogEnabled()) {
             $this->log->debug('SOAP REQUEST HEADERS - ' . $endpointName, [$client->__getLastRequestHeaders()]);
-            $this->log->debug('SOAP REQUEST - ' . $endpointName, [$client->__getLastRequestHeaders()]);
+            $this->log->debug('SOAP REQUEST - ' . $endpointName, [$client->__getLastRequest()]);
             $this->log->debug('SOAP RESPONSE HEADERS - ' . [$endpointName, $client->__getLastResponseHeaders()]);
             $this->log->debug('SOAP RESPONSE - ' . $endpointName, [$client->__getLastResponse()]);
         }

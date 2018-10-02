@@ -42,7 +42,7 @@ trait Validaciones
                 $wsReglas = [];
                 $codComprobantes = $this->codComprobantes();
 
-                if ($this->configuracion->default_punto_venta) {
+                if ($this->configuracion->production === false && $this->configuracion->default_punto_venta) {
                     $puntosVenta = [$this->configuracion->default_punto_venta];
                 } else {
                     $puntosVenta = $this->puntosVentaValidos();

@@ -45,6 +45,8 @@ $configuracion = [
 
     'debug' => true,
 
+    'production' => true,
+
     'default_punto_venta' => 1,
 
     'log' => false,

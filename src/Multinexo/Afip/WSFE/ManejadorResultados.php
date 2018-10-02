@@ -7,8 +7,6 @@
  * For the full copyright and license information, please view the LICENSE
  */
 
-declare(strict_types=1);
-
 namespace Multinexo\Afip\WSFE;
 
 use Multinexo\Afip\Exceptions\WsException;
@@ -52,6 +50,7 @@ class ManejadorResultados
      */
     public function procesar($resultado): void
     {
+
         $errores = isset(reset($resultado)->Errors) ? reset($resultado)->Errors : null;
         if ($errores) {
             throw new WsException($errores);

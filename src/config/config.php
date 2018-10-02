@@ -7,8 +7,6 @@
  * For the full copyright and license information, please view the LICENSE
  */
 
-declare(strict_types=1);
-
 $configuracion = [
     /*
     |--------------------------------------------------------------------------
@@ -44,6 +42,10 @@ $configuracion = [
     ],
 
     'cuit' => null,
+
+    'debug' => true,
+
+    'default_punto_venta' => 1,
 
     'log' => false,
 ];

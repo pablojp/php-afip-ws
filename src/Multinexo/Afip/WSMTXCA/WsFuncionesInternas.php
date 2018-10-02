@@ -7,14 +7,14 @@
  * For the full copyright and license information, please view the LICENSE
  */
 
-declare(strict_types=1);
-
 namespace Multinexo\Afip\WSMTXCA;
 
 use Multinexo\Afip\Exceptions\WsException;
+use Multinexo\Afip\Traits\Logging;
 
 class WsFuncionesInternas
 {
+    use Logging;
     /**
      * @var
      */
@@ -44,6 +44,8 @@ class WsFuncionesInternas
                 ],
             ]);
 
+        $this->logSoapEndpoint(__METHOD__, $client);
+
         $this->checkSoapFault($resultado);
 
         $this->resultado->procesar($resultado);
@@ -71,6 +73,7 @@ class WsFuncionesInternas
                 'fechaDesde' => $data->fechaDesde,
                 'fechaHasta' => $data->fechaHasta,
             ]);
+        $this->logSoapEndpoint(__METHOD__, $client);
         $this->checkSoapFault($resultado);
 
         $this->resultado->procesar($resultado);
@@ -96,6 +99,7 @@ class WsFuncionesInternas
                 'authRequest' => $authRequest,
                 'CAEA' => $data->caea,
             ]);
+        $this->logSoapEndpoint(__METHOD__, $client);
         $this->checkSoapFault($resultado);
 
         $this->resultado->procesar($resultado);
@@ -129,6 +133,7 @@ class WsFuncionesInternas
                     'orden' => $data->orden,
                 ],
             ]);
+        $this->logSoapEndpoint(__METHOD__, $client);
         $this->checkSoapFault($resultado);
 
         $this->resultado->procesar($resultado);
@@ -159,7 +164,7 @@ class WsFuncionesInternas
                 'authRequest' => $authRequest,
                 'comprobanteCAERequest' => $cbte,
             ]);
-
+        $this->logSoapEndpoint(__METHOD__, $client);
         $this->checkSoapFault($resultado);
 
         $this->resultado->procesar($resultado);
@@ -192,7 +197,7 @@ class WsFuncionesInternas
                     'numeroPuntoVenta' => $ptoVta,
                 ],
             ]);
-
+        $this->logSoapEndpoint(__METHOD__, $client);
         $this->resultado->procesar($resultado);
 
         return $resultado->numeroComprobante;
@@ -358,6 +363,7 @@ class WsFuncionesInternas
                 'authRequest' => $authRequest,
                 'comprobanteCAEARequest' => $cbte,
             ]);
+        $this->logSoapEndpoint(__METHOD__, $client);
         $this->checkSoapFault($result);
         $errors = $this->resultado->obtenerErrores1($result);
         if (!$errors) {
@@ -388,6 +394,7 @@ class WsFuncionesInternas
                 'authRequest' => $authRequest,
                 'CAEA' => $caea,
             ]);
+        $this->logSoapEndpoint(__METHOD__, $client);
         $this->checkSoapFault($result);
         $errors = $this->resultado->obtenerErrores1($result);
         if (!$errors) {
@@ -420,6 +427,7 @@ class WsFuncionesInternas
                 'CAEA' => $caea,
                 'numeroPuntoVenta' => $ptoVta,
             ]);
+        $this->logSoapEndpoint(__METHOD__, $client);
         $this->checkSoapFault($result);
         $errors = $this->resultado->obtenerErrores1($result);
         if (!$errors) {
@@ -450,6 +458,7 @@ class WsFuncionesInternas
                 'authRequest' => $authRequest,
                 'CAEA' => $caea,
             ]);
+        $this->logSoapEndpoint(__METHOD__, $client);
         $this->checkSoapFault($result);
         $errors = $this->resultado->obtenerErrores1($result);
         if (!$errors) {

@@ -7,12 +7,14 @@
  * For the full copyright and license information, please view the LICENSE
  */
 
-declare(strict_types=1);
-
 namespace Multinexo\Afip\WSMTXCA;
+
+use Multinexo\Afip\Traits\Logging;
 
 class WsParametros
 {
+    use Logging;
+
     /**
      * WsParametros constructor.
      */
@@ -168,6 +170,8 @@ class WsParametros
         $resultado = $client->consultarUnidadesMedida([
             'authRequest' => $authRequest,
         ]);
+
+        $this->logSoapEndpoint(__METHOD__, $client);
 
         $this->resultado->procesar($resultado);
 

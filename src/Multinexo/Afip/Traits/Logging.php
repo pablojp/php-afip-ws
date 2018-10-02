@@ -14,7 +14,7 @@ trait Logging
 
     public function hasLogEnabled()
     {
-        return (isset($this->configuracion->debug) && $this->configuracion->debug === true);
+        return ($this->log && isset($this->configuracion->debug) && $this->configuracion->debug === true);
     }
 
     protected function logSoapEndpoint($endpointName, $client)

@@ -7,8 +7,6 @@
  * For the full copyright and license information, please view the LICENSE
  */
 
-declare(strict_types=1);
-
 namespace Multinexo\Afip\WSFE;
 
 use Multinexo\Afip\Exceptions\WsException;
@@ -20,6 +18,8 @@ use Multinexo\Afip\Traits\Validaciones;
  */
 class Wsfe extends WsFuncionesInternas
 {
+
+
     use Validaciones;
     use TraitAutenticacion;
 
@@ -76,12 +76,13 @@ class Wsfe extends WsFuncionesInternas
 
         $this->validarDatosFactura();
 
-        $ultimoComprobante = $this->FECompUltimoAutorizado(
+        $comprobanteObj = $this->FECompUltimoAutorizado(
             $this->client,
             $this->authRequest,
             $this->datos->codigoComprobante,
             $this->datos->puntoVenta
-        )->CbteNro;
+        );
+        $ultimoComprobante = $comprobanteObj->CbteNro;
 
         $this->datos = $this->parseFacturaArray($this->datos);
         $this->datos->FeDetReq->FECAEDetRequest->CbteDesde = $ultimoComprobante + 1;

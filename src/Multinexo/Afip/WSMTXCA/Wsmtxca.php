@@ -7,11 +7,8 @@
  * For the full copyright and license information, please view the LICENSE
  */
 
-declare(strict_types=1);
-
 namespace Multinexo\Afip\WSMTXCA;
 
-use Illuminate\Support\Facades\Log;
 use Multinexo\Afip\Exceptions\WsException;
 use Multinexo\Afip\Traits\Autenticacion as TraitAutenticacion;
 use Multinexo\Afip\Traits\Validaciones;
@@ -98,7 +95,6 @@ class Wsmtxca extends WsFuncionesInternas
         $this->datos = $this->parseFacturaArray($this->datos);
         $this->datos->numeroComprobante = $ultimoComprobante + 1;
 
-        Log::debug((array) $this->datos);
         $result = $this->wsAutorizarComprobante($this->client, $this->authRequest, $this->datos);
 
         return $result;

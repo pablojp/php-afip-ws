@@ -7,8 +7,6 @@
  * For the full copyright and license information, please view the LICENSE
  */
 
-declare(strict_types=1);
-
 namespace Multinexo\Afip\Traits;
 
 use Illuminate\Support\Facades\Log;
@@ -44,7 +42,8 @@ trait Validaciones
                 $wsReglas = [];
                 $codComprobantes = $this->codComprobantes();
 //                $puntosVenta = $this->puntosVentaValidos();
-//                Log::debug('pos: ' . json_encode($puntosVenta));
+//                $puntosVenta = [4];
+
 
                 $codDocumento = $this->codDocumento();
                 $codMonedas = $this->codMonedas();
@@ -54,7 +53,7 @@ trait Validaciones
                     'orden' => v::notEmpty()->intVal()->between(1, 2)->length(1, 1),
                     'codigoComprobante' => v::in($codComprobantes),
 //                    'puntoVenta' => v::in($puntosVenta), // fe s/item?
-                    'puntoVenta' => v::notEmpty(), // se quita validacion porque en homologacion no devuelve resultados
+                    'puntoVenta' => v::notEmpty(),
                     'cantidadRegistros' => v::notEmpty()->intVal()->between(1, 9999),
                     'codigoConcepto' => v::in(['1', '2', '3']),
                     'codigoDocumento' => v::in($codDocumento),
@@ -211,8 +210,8 @@ trait Validaciones
             'puntoVenta' => 'Punto de venta: Debe debe estar comprendido entre 1 y 9998.',
         ];
         $errorMessages = [
-            //            'notEmpty' => "The field '{{name}}' is required",
-            //            'in' => "The field '{{name}}' must be one of the values: {{haystack}}",
+        //            'notEmpty' => "The field '{{name}}' is required",
+        //            'in' => "The field '{{name}}' must be one of the values: {{haystack}}",
         ];
 
         return $errorMessages;

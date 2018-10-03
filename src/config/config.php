@@ -47,7 +47,7 @@ $configuracion = [
 
     'production' => true,
 
-    'default_punto_venta' => 1,
+    'default_punto_venta' => null,
 
     'log' => false,
 ];

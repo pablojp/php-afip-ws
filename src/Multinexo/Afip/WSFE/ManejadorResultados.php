@@ -53,7 +53,11 @@ class ManejadorResultados
 
         $errores = isset(reset($resultado)->Errors) ? reset($resultado)->Errors : null;
         if ($errores) {
-            throw new WsException($errores);
+            if ($errores->Err && $errores->Err->Msg && $errores->Err->Code) {
+                throw new WsException($errores->Err->Msg, $errores->Err->Code);
+            } else {
+                throw new WsException($errores);
+            }
         }
     }
 }

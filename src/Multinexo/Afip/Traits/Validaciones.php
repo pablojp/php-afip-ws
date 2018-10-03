@@ -41,12 +41,7 @@ trait Validaciones
 
                 $wsReglas = [];
                 $codComprobantes = $this->codComprobantes();
-
-//                if ($this->configuracion->production === false && $this->configuracion->default_punto_venta) {
-//                    $puntosVenta = [$this->configuracion->default_punto_venta];
-//                } else {
-//                    $puntosVenta = $this->puntosVentaValidos();
-//                }
+                $puntosVenta = $this->puntosVentaValidos();
 
                 $codDocumento = $this->codDocumento();
                 $codMonedas = $this->codMonedas();
@@ -55,8 +50,8 @@ trait Validaciones
                     'periodo' => v::notEmpty()->date('Ym'),
                     'orden' => v::notEmpty()->intVal()->between(1, 2)->length(1, 1),
                     'codigoComprobante' => v::in($codComprobantes),
-//                    'puntoVenta' => v::in($puntosVenta), // fe s/item?
-                    'puntoVenta' => v::notEmpty(),
+                    'puntoVenta' => v::in($puntosVenta), // fe s/item?
+//                    'puntoVenta' => v::notEmpty(),
                     'cantidadRegistros' => v::notEmpty()->intVal()->between(1, 9999),
                     'codigoConcepto' => v::in(['1', '2', '3']),
                     'codigoDocumento' => v::in($codDocumento),
@@ -334,7 +329,12 @@ trait Validaciones
         if ($this->ws == 'wsfe') {
             $result = (new FeSinItemsParam())->FEParamGetPtosVenta($this->client, $this->authRequest);
             if (empty((array) $result->ResultGet)) {
-                return [];
+                if ($this->configuracion->production === false && $this->configuracion->default_punto_venta) {
+                    $puntosVenta = [$this->configuracion->default_punto_venta];
+                } else {
+                    $puntosVenta = [];
+                }
+                return $puntosVenta;
             }
 
             if (count($result->ResultGet->PtoVenta) > 1) {
@@ -352,7 +352,12 @@ trait Validaciones
             $result = (new FeConItemsParam())->consultarPuntosVenta($this->client, $this->authRequest);
 
             if (empty((array) $result->arrayPuntosVenta)) {
-                return [];
+                if ($this->configuracion->default_punto_venta) {
+                    $puntosVenta = [$this->configuracion->default_punto_venta];
+                } else {
+                    $puntosVenta = [];
+                }
+                return $puntosVenta;
             }
 
             foreach ($result->arrayPuntosVenta as $puntoVenta) {

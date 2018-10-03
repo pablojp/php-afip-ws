@@ -35,4 +35,14 @@ class FacturaConItems extends Wsmtxca
 
         return $result;
     }
+
+    public function puntosDeVenta() {
+        if (!$this->getAutenticacion()) {
+            throw new WsException('Error de autenticacion');
+        }
+
+        $result = (new FeConItemsParam())->consultarPuntosVentaCAE($this->client, $this->authRequest);
+
+        return $result;
+    }
 }

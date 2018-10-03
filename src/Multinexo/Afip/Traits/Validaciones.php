@@ -42,11 +42,11 @@ trait Validaciones
                 $wsReglas = [];
                 $codComprobantes = $this->codComprobantes();
 
-                if ($this->configuracion->production === false && $this->configuracion->default_punto_venta) {
-                    $puntosVenta = [$this->configuracion->default_punto_venta];
-                } else {
-                    $puntosVenta = $this->puntosVentaValidos();
-                }
+//                if ($this->configuracion->production === false && $this->configuracion->default_punto_venta) {
+//                    $puntosVenta = [$this->configuracion->default_punto_venta];
+//                } else {
+//                    $puntosVenta = $this->puntosVentaValidos();
+//                }
 
                 $codDocumento = $this->codDocumento();
                 $codMonedas = $this->codMonedas();
@@ -55,8 +55,8 @@ trait Validaciones
                     'periodo' => v::notEmpty()->date('Ym'),
                     'orden' => v::notEmpty()->intVal()->between(1, 2)->length(1, 1),
                     'codigoComprobante' => v::in($codComprobantes),
-                    'puntoVenta' => v::in($puntosVenta), // fe s/item?
-//                    'puntoVenta' => v::notEmpty(),
+//                    'puntoVenta' => v::in($puntosVenta), // fe s/item?
+                    'puntoVenta' => v::notEmpty(),
                     'cantidadRegistros' => v::notEmpty()->intVal()->between(1, 9999),
                     'codigoConcepto' => v::in(['1', '2', '3']),
                     'codigoDocumento' => v::in($codDocumento),

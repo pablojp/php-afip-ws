@@ -327,14 +327,14 @@ trait Validaciones
     {
         $codigos = [];
         if ($this->ws == 'wsfe') {
+
+            if ($this->configuracion->production === false && $this->configuracion->default_punto_venta) {
+                return [$this->configuracion->default_punto_venta];
+            }
+
             $result = (new FeSinItemsParam())->FEParamGetPtosVenta($this->client, $this->authRequest);
             if (empty((array) $result->ResultGet)) {
-                if ($this->configuracion->production === false && $this->configuracion->default_punto_venta) {
-                    $puntosVenta = [$this->configuracion->default_punto_venta];
-                } else {
-                    $puntosVenta = [];
-                }
-                return $puntosVenta;
+                return [];
             }
 
             if (count($result->ResultGet->PtoVenta) > 1) {

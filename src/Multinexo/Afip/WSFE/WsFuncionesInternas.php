@@ -51,7 +51,11 @@ class WsFuncionesInternas
 
         if (reset($resultado)->FeDetResp->FECAEDetResponse->Resultado == 'R') {
             $observaciones = reset($resultado)->FeDetResp->FECAEDetResponse->Observaciones;
-            throw new WsException($observaciones);
+            if ($observaciones->Obs && $observaciones->Obs->Msg && $observaciones->Obs->Code) {
+                throw new WsException($observaciones->Obs->Msg, $observaciones->Obs->Code);
+            } else {
+                throw new WsException($observaciones);
+            }
         }
 
         // TODO: Muestro eventos en estructura separada? -> $events = ['path' => $resultado];

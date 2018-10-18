@@ -48,9 +48,8 @@ class ManejadorResultados
      *
      * @throws WsException
      */
-    public function procesar($resultado): void
+    public function procesar($resultado)
     {
-
         $errores = isset(reset($resultado)->Errors) ? reset($resultado)->Errors : null;
         if ($errores) {
             if ($errores->Err && $errores->Err->Msg && $errores->Err->Code) {

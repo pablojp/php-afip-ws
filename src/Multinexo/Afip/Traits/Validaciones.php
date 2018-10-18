@@ -223,7 +223,7 @@ trait Validaciones
      *
      * @throws ValidationException
      */
-    public function validarDatosArray($array, $regla): void
+    public function validarDatosArray($array, $regla)
     {
         // TODO: Los items tienen que ir si o si en el caso de fe wsmtxca
         if (isset($array)) {
@@ -238,7 +238,7 @@ trait Validaciones
      *
      * @throws ValidationException
      */
-    public function validarDatosFactura(): void
+    public function validarDatosFactura()
     {
         $this->validarDatos($this->datos, $this->getRules('fe'));
 
@@ -271,7 +271,7 @@ trait Validaciones
      *
      * @throws ValidationException
      */
-    public function validarDatos($datos, $reglas): void
+    public function validarDatos($datos, $reglas)
     {
         $validaciones = [];
 

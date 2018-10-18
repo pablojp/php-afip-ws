@@ -31,7 +31,7 @@ class Wsaa
      *
      * @param $service : Receive the service name (wsfe, wsbfe, wsfex, wsctg, etc.)
      */
-    public function createTRA($service): void
+    public function createTRA($service)
     {
         $TRA = new \SimpleXMLElement(
             '<?xml version="1.0" encoding="UTF-8"?>' .

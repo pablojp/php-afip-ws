@@ -11,6 +11,9 @@ namespace Multinexo\Afip\Exceptions;
 
 class WsException extends \Exception
 {
+    const CODE_WS_NO_DISPONIBLE = 3000;
+    const CODE_ERROR_AUTENTICACION = 3001;
+
     public function __construct($message, $code = 0, Exception $previous = null)
     {
         $message = json_encode($message);

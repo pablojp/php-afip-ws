@@ -71,7 +71,10 @@ class Wsfe extends WsFuncionesInternas
     public function crearComprobante()
     {
         if (!$this->getAutenticacion()) {
-            throw new WsException('Error de autenticacion');
+            throw new WsException(
+                'Error de autenticacion',
+                WsException::CODE_ERROR_AUTENTICACION
+            );
         }
 
         $this->validarDatosFactura();
@@ -104,7 +107,10 @@ class Wsfe extends WsFuncionesInternas
     public function consultarCAEAPorPeriodo()
     {
         if (!$this->getAutenticacion()) {
-            throw new WsException('Error de autenticacion');
+            throw new WsException(
+                'Error de autenticacion',
+                WsException::CODE_ERROR_AUTENTICACION
+            );
         }
 
         $this->validarDatos($this->datos, $this->getRules('fe'));
@@ -124,7 +130,10 @@ class Wsfe extends WsFuncionesInternas
     public function solicitarCAEA()
     {
         if (!$this->getAutenticacion()) {
-            throw new WsException('Error de autenticacion');
+            throw new WsException(
+                'Error de autenticacion',
+                WsException::CODE_ERROR_AUTENTICACION
+            );
         }
 
         $this->validarDatos($this->datos, $this->getRules('fe'));
@@ -144,7 +153,10 @@ class Wsfe extends WsFuncionesInternas
     public function consultarComprobante()
     {
         if (!$this->getAutenticacion()) {
-            throw new WsException('Error de autenticacion');
+            throw new WsException(
+                'Error de autenticacion',
+                WsException::CODE_ERROR_AUTENTICACION
+            );
         }
 
         $this->validarDatos($this->datos, $this->getRules('fe'));

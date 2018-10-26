@@ -54,7 +54,10 @@ trait Autenticacion
         $this->client = $this->autenticacion->getClient($this->ws);
         $this->authRequest = $this->autenticacion->getCredentials($this->ws);
         if (!$this->checkServerStatus($this->ws, $this->client)) { // TODO: analizar si es conveniente dejarlo.
-            throw new WsException('Web service `' . $this->ws . '` temporalmente no disponible');
+            throw new WsException(
+                'Web service `' . $this->ws . '` temporalmente no disponible',
+                WsException::CODE_WS_NO_DISPONIBLE
+            );
         }
 
         return true;

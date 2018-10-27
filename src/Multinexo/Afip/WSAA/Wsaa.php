@@ -205,9 +205,8 @@ class Wsaa
 
         $expirationTime = $this->getXmlAttribute($path, ['header', 'expirationTime']);
 
-        if (strtotime($expirationTime) < strtotime(date('Y-m-d h:m:i'))) {
+        if (strtotime($expirationTime) < strtotime(date('Y-m-d H:i:s'))) {
             $this->authenticate($service);
-
             return true;
         }
 
